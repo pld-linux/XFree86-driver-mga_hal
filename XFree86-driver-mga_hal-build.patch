@@ -1,0 +1,41 @@
+--- mgadrivers-3.0-src/4.3.0/drivers/src/mga.h.orig	Fri Jul  4 18:14:38 2003
++++ mgadrivers-3.0-src/4.3.0/drivers/src/mga.h	Tue Aug  3 14:06:29 2004
+@@ -35,7 +35,7 @@
+ 
+ 
+ 
+-#include "/opt/xc.430/programs/Xserver/hw/xfree86/os-support/xf86_ansic.h"
++#include "xf86_ansic.h"
+ #include "xf86dri.h"
+ #include "dri.h"
+ 
+--- mgadrivers-3.0-src/4.3.0/drivers/src/mga_video.c.orig	Wed Dec 26 14:54:04 2001
++++ mgadrivers-3.0-src/4.3.0/drivers/src/mga_video.c	Tue Aug  3 14:16:22 2004
+@@ -963,7 +963,7 @@
+     } else {
+     /* update cliplist */
+ 	if(!RegionsEqual(&pPriv->clip, clipBoxes)) {
+-	    REGION_COPY(pScreen, &pPriv->clip, clipBoxes);
++	    REGION_COPY(pScrn->pScreen, &pPriv->clip, clipBoxes);
+ 	    /* draw these */
+ 	    XAAFillSolidRects(pScrn, pPriv->colorKey, GXcopy, ~0, 
+ 					REGION_NUM_RECTS(clipBoxes),
+--- mgadrivers-3.0-src/4.3.0/drivers/src/Imakefile.orig	Mon Feb 17 17:06:42 2003
++++ mgadrivers-3.0-src/4.3.0/drivers/src/Imakefile	Tue Aug  3 14:24:39 2004
+@@ -4,6 +4,7 @@
+ XCOMM
+ 
+ #define IHaveModules
++#define HaveMatroxHal YES
+ #include <Server.tmpl>
+ 
+ #if BuildMatroxHal
+@@ -77,7 +78,7 @@
+            -I$(XF86SRC)/vgahw -I$(XF86SRC)/fbdevhw \
+            -I$(XF86SRC)/ramdac -I$(XF86SRC)/ddc -I$(XF86SRC)/i2c \
+            -I$(SERVERSRC)/Xext -I$(XF86SRC)/xf8_32bpp\
+-           -I$(FONTINCSRC) -I$(SERVERSRC)/include -I$(XINCLUDESRC) \
++           -I$(FONTINCSRC) -I$(SERVERSRC)/include -I$(XINCLUDESRC) -I$(INCLUDESRC) \
+            -I$(XF86SRC)/xf24_32bpp -I$(XF86SRC)/shadowfb -I$(EXTINCSRC) \
+ 	   -I$(SERVERSRC)/render \
+ 	   -I$(XF86SRC)/vbe $(DRIINCLUDES)

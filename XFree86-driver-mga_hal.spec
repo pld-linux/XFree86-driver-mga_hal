@@ -1,5 +1,5 @@
 Summary:	mga_hal driver - extensions for XFree86 mga driver
-Summary(pl.UTF-8):   Sterownik mga_hal - rozszerzenia dla sterownika mga
+Summary(pl.UTF-8):	Sterownik mga_hal - rozszerzenia dla sterownika mga
 Name:		XFree86-driver-mga_hal
 Version:	3.0
 Release:	1
